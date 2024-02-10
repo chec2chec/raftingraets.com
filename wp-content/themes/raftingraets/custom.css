@@ -1,0 +1,5 @@
+.bg-dark {
+  background-image: url('clipart/background.png');
+  background-size: cover; /* Adjust the size as needed */
+  background-repeat: repeat-x;
+}
