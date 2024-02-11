@@ -45,36 +45,35 @@
         </div>
     </div>
     <!-- Topbar Start -->
-    <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <?php if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) : ?>
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php bloginfo( 'name' ); ?>" class="navbar-brand">
-                        <h1 class="m-0 text-primary"><?php the_custom_logo(); ?><h1>
-                    </a>
-                <?php else : ?> 
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php bloginfo( 'name' ); ?>" class="navbar-brand"><h1 class="m-0 text-primary"><img src="<?php echo get_stylesheet_directory_uri(); ?>/clipart/logo-rect.png" alt="<?php bloginfo( 'name' ); ?>" width="200" /></h1></a>
-                <?php endif; ?>
+    <div  id="topbar-raets" class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+            <?php if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) : ?>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php bloginfo( 'name' ); ?>" class="navbar-brand">
+                    <h1 class="m-0 text-primary"><?php the_custom_logo(); ?><h1>
+                </a>
+            <?php else : ?> 
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php bloginfo( 'name' ); ?>" class="navbar-brand"><h1 class="m-0 text-primary"><img src="<?php echo get_stylesheet_directory_uri(); ?>/clipart/logo-rect.png" alt="<?php bloginfo( 'name' ); ?>" width="200" /></h1></a>
+            <?php endif; ?>
 
-
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                    <!-- <div class="navbar-nav ml-auto py-0"> -->
-                        <?php
-                            wp_nav_menu( array(
-                                'menu'           => 'primary-menu',
-                                'theme_location' => 'primary_menu',
-                                'menu_class' => '',
-                                'container' => 'div',
-                                'container_class' => 'navbar-nav ml-auto py-0',
-                                'items_wrap' => '%3$s',
-                                'depth' => 0,
-                            ));
-                        ?>
-                    <!-- </div> -->
-                </div>
-            </nav>
-        </div>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                <!-- <div class="navbar-nav ml-auto py-0"> -->
+                    <?php
+                        wp_nav_menu( array(
+                            'menu'           => 'primary-menu',
+                            'theme_location' => 'primary_menu',
+                            'menu_class' => '',
+                            'container' => 'div',
+                            'container_class' => 'navbar-nav ml-auto py-0',
+                            'items_wrap' => '%3$s',
+                            'depth' => 0,
+                        ));
+                    ?>
+                <!-- </div> -->
+            </div>
+        </nav>
+    </div>
 
 
