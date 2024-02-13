@@ -23,13 +23,6 @@
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid pt-0 d-none d-lg-block">
@@ -59,19 +52,17 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                <!-- <div class="navbar-nav ml-auto py-0"> -->
-                    <?php
-                        wp_nav_menu( array(
-                            'menu'           => 'primary-menu',
-                            'theme_location' => 'primary_menu',
-                            'menu_class' => '',
-                            'container' => 'div',
-                            'container_class' => 'navbar-nav ml-auto py-0',
-                            'items_wrap' => '%3$s',
-                            'depth' => 0,
-                        ));
-                    ?>
-                <!-- </div> -->
+                <?php
+                    wp_nav_menu( array(
+                        'menu'           => 'primary-menu',
+                        'theme_location' => 'primary_menu',
+                        'menu_class' => '',
+                        'container' => 'div',
+                        'container_class' => 'navbar-nav ml-auto py-0',
+                        'items_wrap' => '%3$s',
+                        'depth' => 0,
+                    ));
+                ?>
             </div>
         </nav>
     </div>

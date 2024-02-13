@@ -5,11 +5,6 @@ if ( ! class_exists( 'Primary_Nav_Walker' ) ) {
     require_once get_template_directory() . '/includes/class-primary-nav-walker.php';
 }
 
-// function remove_ul ( $menu ){
-//     return preg_replace( array( '#^<ul[^>]*>#', '#</ul>$#' ), '', $menu );
-// }
-// add_filter( 'wp_nav_menu', 'remove_ul' );
-
 function softuni_assets( $hook ) {
     $version = date('YmdHis');
 	// create my own version codes
@@ -20,10 +15,18 @@ function softuni_assets( $hook ) {
         'strategy'  => 'defer',
     );
 
-	wp_enqueue_script( 'bootstrap-min-js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '1.0.0', $args );
+    
+    wp_enqueue_script( 'jquery-3.4.1.min.js', 'https://code.jquery.com/jquery-3.4.1.min.js', array(), '1.0.0', 'all' );
+	wp_enqueue_script( 'bootstrap.bundle.min.js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js', array(), '1.0.0', $args );
+    wp_enqueue_script( 'easing.min.js', get_template_directory_uri() . '/lib/easing/easing.min.js', array(), '1.0.0', 'all' );
+    wp_enqueue_script( 'moment.min.js', get_template_directory_uri() . '/lib/tempusdominus/js/moment.min.js', array(), '1.0.0', 'all' );
+    wp_enqueue_script( 'moment-timezone.min.js', get_template_directory_uri() . '/lib/tempusdominus/js/moment-timezone.min.js', array(), '1.0.0', 'all' );
+    wp_enqueue_script( 'moment-timezone.min.js', get_template_directory_uri() . '/lib/tempusdominus/js/moment-timezone.min.js', array(), '1.0.0', 'all' );
+    wp_enqueue_script( 'main.js', get_template_directory_uri() . '/js/main.js', array(), $version, 'all' );
+    
     
     wp_enqueue_style( 'style.css', get_template_directory_uri() . '/css/style.css', array(), '1.0.0', 'all' );
-    wp_enqueue_style( 'owl.carousel.min.css', get_template_directory_uri() . '/lib/owlcarousel/assets/owl.carousel.min.css', array(), '1.0.0', 'all' );
+
     wp_enqueue_style( 'tempusdominus-bootstrap-4.min.css', get_template_directory_uri() . '/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css', array(), '1.0.0', 'all' );
 
     wp_enqueue_style ('custom.css', get_template_directory_uri().'/custom.css', array(), $version, 'all' );
@@ -40,8 +43,6 @@ function softuni_register_nav_menus() {
 		array(
 			'primary_menu'      => __( 'Primary Menu', 'softuni' ),
 			'secondary_menu'  => __( 'Secondary Menu', 'softuni' ),
-			// 'important_links'   => __( 'Important Links', 'softuni' ),
-            // 'latest_services'   => __( 'Latest Services', 'softuni' )
 		)
 	);
 
@@ -56,8 +57,6 @@ add_action( 'after_setup_theme', 'softuni_register_nav_menus' );
 
 /**
  * Disable Gutenberg on the back end.
- *
- *
  */
 add_filter( 'use_block_editor_for_post', '__return_false' );
 
