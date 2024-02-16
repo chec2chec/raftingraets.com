@@ -23,8 +23,13 @@ class Primary_Nav_Walker extends Walker_Nav_Menu {
      */
     public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
         if ($depth === $this->depth_level) {
+            $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+            $active = '';
+            if (in_array('current-menu-item', $classes)) {
+                $active .= ' active';
+            }
             $output .= sprintf(
-                '<a href="%s" class="nav-item nav-link">%s</a>',
+                '<a href="%s" class="nav-item nav-link' . $active . '">%s</a>',
                 $item->url,
                 $item->title
             );

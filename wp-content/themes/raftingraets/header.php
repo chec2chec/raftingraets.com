@@ -25,6 +25,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <div style="background: #FFF">
+    <?php
+    global $template;
+    echo 'Currently used template: ' . basename($template);
+    ?>
+    </div>
+
     <div class="container-fluid pt-0 d-none d-lg-block">
         <div class="container">
             <div class="row">

@@ -10,7 +10,7 @@ get_header(); ?>
     <div class="container-fluid py-5">
         <div class="container pt-5">
             <div class="row">
-                <div class="col-lg-6" style="min-height: 500px;">
+                <div class="col-lg-4">
                     <div class="position-relative h-100">
                         <?php if ( has_post_thumbnail() ) : ?>
                             <?php the_post_thumbnail( 'large' ); ?>
@@ -20,7 +20,7 @@ get_header(); ?>
                     </div>
                 </div>
 
-                <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="col-lg-8 pt-5 pb-lg-5">
                     <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
                         <h1 class="mb-3"><?php the_title(); ?></h1>
                         <?php the_content(); ?>

@@ -17,8 +17,9 @@ html::after {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-image: url('clipart/rafting.jpg');
+  /* background-image: url('clipart/rafting.jpg'); */
+  background-color: #aaccff;
   /* filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="grunge"><feTurbulence type="fractalNoise" baseFrequency="0.25" numOctaves="5" /><feDisplacementMap in="SourceGraphic" scale="20" /></filter></svg>#grunge'); */
   /* filter: blur(10px); */
-  opacity: 0.7;
+  /* opacity: 0.7; */
 }
