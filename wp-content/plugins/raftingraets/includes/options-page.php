@@ -27,7 +27,7 @@ if ( ! empty( $_POST['raftingraets_save'] ) && $_POST['raftingraets_save'] == 1 
             <tr valign="top">
                 <th scope="row">
                     <label for="raftingraets_homepage_post_number">
-                          <?php _e( 'Rafting RAETS Number of posts on the homepage', 'raets' ); ?>
+                          <?php _e( 'Number of posts on the homepage', 'raets' ); ?>
                     </label>
                 </th>
                 <td><input type="number" id="raftingraets_homepage_post_number" name="raftingraets_homepage_post_number" value="<?php echo esc_attr( $raftingraets_homepage_post_per_page );  ?>" /></td>

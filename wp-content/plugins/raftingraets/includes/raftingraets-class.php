@@ -16,10 +16,10 @@ class Rafting_Raets_Cpt {
 	 */
 	public function raftingraets_cpt() {
 		$labels = array(
-			'name'                  => _x( 'Rafting Offers', 'Post type general name', 'raets' ),
+			'name'                  => _x( 'Offers', 'Post type general name', 'raets' ),
 			'singular_name'         => _x( 'Offer', 'Post type singular name', 'raets' ),
-			'menu_name'             => _x( 'Rafting Offers', 'Admin Menu text', 'raets' ),
-			'name_admin_bar'        => _x( 'Rafting Offer', 'Add New on Toolbar', 'raets' ),
+			'menu_name'             => _x( 'Offers', 'Admin Menu text', 'raets' ),
+			'name_admin_bar'        => _x( 'Offer', 'Add New on Toolbar', 'raets' ),
 			'add_new'               => __( 'Add New', 'raets' ),
 			'add_new_item'          => __( 'Add New Offer', 'raets' ),
 			'new_item'              => __( 'New Offer', 'raets' ),

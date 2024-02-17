@@ -4,10 +4,9 @@
  * Load the plugin assets
  */
 function rafting_raets_plugin_enqueue_assets() {
-
     $args = array();
     wp_enqueue_script(
-        'robots-assets-plugin',
+        'rafting-raets-assets-plugin',
         RAFTING_RAETS_PLUGIN_ASSETS_DIR . '/js/scripts.js',
         array( 'jquery' ), 
         '1.1', 
@@ -19,8 +18,6 @@ function rafting_raets_plugin_enqueue_assets() {
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
 		)
 	);
-
-
 }
 add_action( 'wp_enqueue_scripts', 'rafting_raets_plugin_enqueue_assets' );
 
@@ -29,7 +26,7 @@ add_action( 'wp_enqueue_scripts', 'rafting_raets_plugin_enqueue_assets' );
  */
 function custom_post_content_filter($content) {
   if (is_singular('offers')) {
-      $content .= '<a href="#" class="btn btn-primary btn-block">Изпратете запитване</a>';
+      $content .= '<div id="offer-result"><a href="#" id="offer-info-btn" data-post-id="' . get_the_ID() . '" class="btn btn-primary btn-block">Още информация</a></div>';
   }
   return $content;
 }
@@ -71,12 +68,6 @@ function save_offer_meta_data( $post_id ) {
 }
 add_action( 'save_post', 'save_offer_meta_data' );
 
-// Step 4: Retrieve Meta Box Data
-function get_offer_is_hot( $post_id ) {
-  $is_hot = get_post_meta( $post_id, 'is_hot', true );
-  return $is_hot === 'on' ? true : false;
-}
-
 /**
  * Add Shortcode
  * 
@@ -115,38 +106,24 @@ function custom_page_shortcode($atts) {
 }
 add_shortcode('page', 'custom_page_shortcode');
 
+/**
+ * AJAX
+ */
+add_action('wp_ajax_get_acf_field', 'get_acf_field_callback');
+add_action('wp_ajax_nopriv_get_acf_field', 'get_acf_field_callback');
 
+function get_acf_field_callback() {
+    $post_id = $_POST['post_id'];
 
+    // Retrieve ACF field value
+    $acf_field_value = get_field('offer-info', $post_id);
 
+    // Return the ACF field value as JSON
+    wp_send_json($acf_field_value);
 
-
-
-// /**
-//  * Function that handles the AJAX call and add a like to the post
-//  *
-//  * @return void
-//  */
-// function robots_like_button() {
-
-//     // if ( empty( $_POST['action'] ) ) {
-//     //     return;
-//     // }
-
-//     $post_id = esc_attr( $_POST['post_id'] );
-
-//     $likes_number = get_post_meta( $post_id, 'likes', true );
-
-//     if ( empty( $likes_number ) ) {
-//         $likes_number = 0;
-//     }
-
-//     // add custom logic to prevent bad users
-//     update_post_meta( $post_id, 'likes', $likes_number + 1 );
-// }
-
-// add_action( 'wp_ajax_nopriv_robots_like_button', 'robots_like_button' );
-// add_action( 'wp_ajax_robots_like_button', 'robots_like_button' );
-
+    // Don't forget to exit
+    wp_die();
+}
 
 /**
  * Add the top level menu page.
