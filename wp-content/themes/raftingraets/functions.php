@@ -56,7 +56,7 @@ function softuni_register_nav_menus() {
 add_action( 'after_setup_theme', 'softuni_register_nav_menus' );
 
 /**
- * Register our Sidebar Footer left
+ * Register our Sidebar Footer
  *
  * @return void
  */
@@ -72,6 +72,31 @@ function mytheme_register_sidebars() {
     ));
 }
 add_action( 'widgets_init', 'mytheme_register_sidebars' );
+
+
+/**
+ * Get Columns
+ */
+ function getColumnsClasses() {
+    $raftingraets_homepage_post_per_page = get_option( 'raftingraets_homepage_post_per_page' );
+
+    if ( empty( $raftingraets_homepage_post_per_page ) ) {
+        $raftingraets_homepage_post_per_page = 3;
+    }
+
+    switch ($raftingraets_homepage_post_per_page) {
+        case 1:
+            return "col-md-12 mb-12 pb-2";
+            break;
+        case 2:
+        case 4:
+            return "col-md-6 mb-6 pb-2";
+            break;
+        default:
+            return "col-md-4 mb-4 pb-2";
+            break;
+    }
+  }
 
 /**
  * Disable Gutenberg on the back end.

@@ -16,22 +16,33 @@ get_header();
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-              
+
                 <?php
                 while (have_posts()) : 
                   echo '<div class="bg-white mb-3" style="padding: 30px; margin-top: 30px;">';
+                  echo '<div class="row">';
+                  echo '<div class="col">';
                   echo '<h1 class="mb-3">';
                     the_title();
                   echo '</h1>';
+                  echo '</div>';
+                  
+                  echo '<div class="col text-right">';
+                  // Retrieve and display ACF fields
+                  $custom_field_value = get_field('offer-price');
+                  if ($custom_field_value) {
+                      echo '<div class="btn btn-primary">Цена: ' . $custom_field_value . ' лв.</div>';
+                  }
+                  echo '</div>';
+                  echo '</div>';
+              
                   echo '<h2 class="mb-3">';
                     the_post();
                   echo '</h2>';
-
-                    // Display post content
-                    the_content();
+                  // The content
+                  the_content();
 
                   echo '</div>';
-
                 endwhile;
                 ?>
               </div>

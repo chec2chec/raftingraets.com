@@ -24,6 +24,102 @@ function rafting_raets_plugin_enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', 'rafting_raets_plugin_enqueue_assets' );
 
+/** 
+ * Custom post type filter
+ */
+function custom_post_content_filter($content) {
+  if (is_singular('offers')) {
+      $content .= '<a href="#" class="btn btn-primary btn-block">Изпратете запитване</a>';
+  }
+  return $content;
+}
+add_filter('the_content', 'custom_post_content_filter');
+
+/** 
+ * Custom meta box
+ */
+function add_custom_meta_box() {
+  add_meta_box(
+      'offer_meta_box',
+      'Offer Settings',
+      'render_offer_meta_box',
+      'offers',
+      'normal',
+      'high'
+  );
+}
+add_action( 'add_meta_boxes', 'add_custom_meta_box' );
+
+function render_offer_meta_box( $post ) {
+  $is_hot = get_post_meta( $post->ID, 'is_hot', true );
+  ?>
+  <label for="is_hot">Is Hot?</label>
+  <input type="checkbox" name="is_hot" id="is_hot" <?php checked( $is_hot, 'on' ); ?>>
+  <?php
+}
+
+function save_offer_meta_data( $post_id ) {
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+      return;
+  }
+
+  if ( isset( $_POST['is_hot'] ) ) {
+      update_post_meta( $post_id, 'is_hot', 'on' );
+  } else {
+      delete_post_meta( $post_id, 'is_hot' );
+  }
+}
+add_action( 'save_post', 'save_offer_meta_data' );
+
+// Step 4: Retrieve Meta Box Data
+function get_offer_is_hot( $post_id ) {
+  $is_hot = get_post_meta( $post_id, 'is_hot', true );
+  return $is_hot === 'on' ? true : false;
+}
+
+/**
+ * Add Shortcode
+ * 
+ * example usage: [page id="123"]
+ */
+function custom_page_shortcode($atts) {
+  $atts = shortcode_atts(array(
+      'id' => '', // Default page ID
+  ), $atts, 'page');
+
+  $page = get_post($atts['id']);
+
+  if ($page && $page->post_type == 'page') {
+      $output = '<div class="row">';
+      $output .= '<div class="col-lg-4">';
+      $output .= '<div class="position-relative h-100">';
+      if ( has_post_thumbnail($page->ID) ) {
+        $output .= $page->the_post_thumbnail( 'large' );
+      } else {
+        $output .= '<img src="' . get_template_directory_uri() . '/clipart/logo-square.png" width="400" alt="Custom Image">';
+      }
+      $output .= '</div>';
+      $output .= '</div>';
+      
+      $output .= '<div class="col-lg-8 pt-5 pb-lg-5">';
+      $output .= '<div class="about-text bg-white p-4 p-lg-5 my-lg-5">';
+      $output .= '<h1>' . esc_html($page->post_title) . '</h1>';
+      $output .= apply_filters('the_content', $page->post_content);
+      $output .= '</div>';
+      $output .= '</div>';
+      $output .= '</div>';
+      return $output;
+  } else {
+      return 'Page not found.';
+  }
+}
+add_shortcode('page', 'custom_page_shortcode');
+
+
+
+
+
+
 
 // /**
 //  * Function that handles the AJAX call and add a like to the post

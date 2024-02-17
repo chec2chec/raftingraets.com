@@ -16,13 +16,6 @@ $offers_args = array(
     'post_type'      => 'offers',
     'post_status'    => 'publish',
     'posts_per_page' => $raftingraets_homepage_post_per_page,
-    // 'meta_query' => array(
-    //     array(
-    //         'key' => 'featured',
-    //         'value' => 1,
-    //         'compare' => '=',
-    //     ),
-    // )
 );
 
 $offers_query = new WP_Query( $offers_args );
@@ -30,6 +23,10 @@ $offers_query = new WP_Query( $offers_args );
 
 
 <div class="container-fluid py-5">
+    <div class="container py-5">
+        <?php echo do_shortcode('[page id="13"]'); ?>
+    </div>
+
     <div class="container py-5">
         <?php if ( $offers_query->have_posts() ) : ?>
 

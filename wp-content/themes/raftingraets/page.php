@@ -37,7 +37,7 @@ get_header(); ?>
 <div class="pagination-links">
     <?php
         wp_link_pages( array(
-            'before' => '<div class="page-links">' . __( 'Pages:', 'textdomain' ),
+            'before' => '<div class="page-links">' . __( 'Pages:', 'raets' ),
             'after' => '</div>',
             'next_or_number' => 'number' // You can use 'next' for Next/Previous links instead of numbers
         ));
