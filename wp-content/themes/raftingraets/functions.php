@@ -56,6 +56,24 @@ function softuni_register_nav_menus() {
 add_action( 'after_setup_theme', 'softuni_register_nav_menus' );
 
 /**
+ * Register our Sidebar Footer left
+ *
+ * @return void
+ */
+function mytheme_register_sidebars() {
+    register_sidebar( array(
+        'name'          => __( 'Footer Sidebar', 'raets' ),
+        'id'            => 'footer-sidebar',
+        'description'   => __( 'Widgets in this area will be shown on the left footer sidebar.', 'raets' ),
+        'before_widget' => '<div class="col-lg-6 col-md-6 mb-5">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">',
+        'after_title'   => '</h5>',
+    ));
+}
+add_action( 'widgets_init', 'mytheme_register_sidebars' );
+
+/**
  * Disable Gutenberg on the back end.
  */
 add_filter( 'use_block_editor_for_post', '__return_false' );

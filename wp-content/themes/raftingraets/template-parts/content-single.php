@@ -13,15 +13,16 @@
         <footer class="entry-footer">
           <?php
             // Display categories and tags
+            echo '<div class="entry-meta">';
             if (get_the_category() || get_the_tags()) {
-                echo '<div class="entry-meta">';
+
                 if (get_the_category()) {
                     echo '<span class="cat-links">' . __('Categories: ', 'your-theme') . get_the_category_list(', ') . '</span>';
                 }
                 if (get_the_tags()) {
                     echo '<span class="tag-links">' . __('Tags: ', 'your-theme') . get_the_tag_list('', ', ', '') . '</span>';
                 }
-                echo '</div><!-- .entry-meta -->';
+
             }
 
             // Edit post link
@@ -42,6 +43,7 @@
                 '</span>'
             );
           ?>
+          sapasapa
         </footer><!-- .entry-footer -->
       </article><!-- #post-<?php the_ID(); ?> -->
 
